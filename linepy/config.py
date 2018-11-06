@@ -30,7 +30,7 @@ class Config(object):
     APP_TYPE    = ApplicationType._VALUES_TO_NAMES[368]
     APP_VER     = '2.1.5'
     CARRIER     = '51089, 1-0'
-    SYSTEM_NAME = 'KAZUINO'
+    SYSTEM_NAME = 'YINMO'
     SYSTEM_VER  = '0.18.1660.143.0'
     IP_ADDR     = '8.8.8.8'
     EMAIL_REGEX = re.compile(r"[^@]+@[^@]+\.[^@]+")
