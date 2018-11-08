@@ -165,61 +165,61 @@ def lineBot(op):
                 elif text.lower() == 'status':
                     try:
                         ret_ = " >>> 本機狀態 <<<"
-                        if settings["autoAdd"] == True: ret_ += "\nAUTO ADD ACTIVED"
-                        else: ret_ += "\nAUTO ADD NOT ACTIVED"
-                        if settings["autoJoin"] == True: ret_ += "\nAUTO JOIN ACTIVED"
-                        else: ret_ += "\nAUTO JOIN NOT ACTIVED"
-                        if settings["autoLeave"] == True: ret_ += "\nAUTO LEAVE ACTIVED"
-                        else: ret_ += "\nAUTO LEAVE NOT ACTIVED"
-                        if settings["autoRead"] == True: ret_ += "\nAUTO READ ACTIVED"
-                        else: ret_ += "\nAUTO READ NOT ACTIVED"
-                        if settings["autochecksticker"] == True: ret_ += "\nAUTO CHECK STICKER ACTIVED"
-                        else: ret_ += "\nAUTO CHECK STICKER NOT ACTIVED"
-                        if settings["detectMention"] == True: ret_ += "\nDETECT MENTION ACTIVED"
-                        else: ret_ += "\nDETECT MENTION NOT ACTIVED"
+                        if settings["autoAdd"] == True: ret_ += "\n自動加入好友✔"
+                        else: ret_ += "\n自動加入好友✘"
+                        if settings["autoJoin"] == True: ret_ += "\n自動進群✔"
+                        else: ret_ += "\n自動進群✘"
+                        if settings["autoLeave"] == True: ret_ += "\n離開副本✔"
+                        else: ret_ += "\n離開副本✘"
+                        if settings["autoRead"] == True: ret_ += "\n自動已讀✔"
+                        else: ret_ += "\n自動已讀✘"
+                        if settings["autochecksticker"] == True: ret_ += "\n鑑定貼圖✔"
+                        else: ret_ += "\n鑑定貼圖✘"
+                        if settings["detectMention"] == True: ret_ += "\n標註回覆✔"
+                        else: ret_ += "\n標註回覆✘"
                         ret_ += " "
                         boteater.sendMessage(to, str(ret_))
                     except Exception as e:
                         boteater.sendMessage(msg.to, str(e))
                 elif text.lower() == 'autoadd on':
                     settings["autoAdd"] = True
-                    boteater.sendMessage(to, "AUTO ADD IS ACTIVED")
+                    boteater.sendMessage(to, "自動加入好友✔")
                 elif text.lower() == 'autoadd off':
                     settings["autoAdd"] = False
-                    boteater.sendMessage(to, "AUTO ADD IS NOT ACTIVED")
+                    boteater.sendMessage(to, "自動加入好友✘")
                 elif text.lower() == 'autojoin on':
                     settings["autoJoin"] = True
-                    boteater.sendMessage(to, "AUTO JOIN IS IS ACTIVED")
+                    boteater.sendMessage(to, "自動進群✔")
                 elif text.lower() == 'autojoin off':
                     settings["autoJoin"] = False
-                    boteater.sendMessage(to, "AUTO JOIN IS IS NOT ACTIVED")
+                    boteater.sendMessage(to, "自動進群✘")
                 elif text.lower() == 'autoleave on':
                     settings["autoLeave"] = True
-                    boteater.sendMessage(to, "AUTO LEAVE IS ACTIVED")
-                elif text.lower() == 'autojoin off':
+                    boteater.sendMessage(to, "離開副本✔")
+                elif text.lower() == 'autoleave off':
                     settings["autoLeave"] = False
-                    boteater.sendMessage(to, "AUTO LEAVE IS NOT ACTIVED")
+                    boteater.sendMessage(to, "離開副本✘")
                 elif text.lower() == 'autoread on':
                     settings["autoRead"] = True
-                    boteater.sendMessage(to, "AUTO READ IS ACTIVED")
+                    boteater.sendMessage(to, "自動已讀✔")
                 elif text.lower() == 'autoread off':
                     settings["autoRead"] = False
-                    boteater.sendMessage(to, "AUTO READ IS NOT ACTIVED")
+                    boteater.sendMessage(to, "自動已讀✘")
                 elif text.lower() == 'autochecksticker on':
                     settings["autochecksticker"] = True
-                    boteater.sendMessage(to, "AUTO zautochecksticker IS ACTIVED")
+                    boteater.sendMessage(to, "鑑定貼圖✔")
                 elif text.lower() == 'autochecksticker off':
                     settings["autochecksticker"] = False
-                    boteater.sendMessage(to, "AUTO zautochecksticker IS NOT ACTIVED")
+                    boteater.sendMessage(to, "鑑定貼圖✘")
                 elif text.lower() == 'detectmention on':
                     settings["datectMention"] = True
-                    boteater.sendMessage(to, "DETECT MENTION IS ACTIVED")
+                    boteater.sendMessage(to, "標註回覆✔")
                 elif text.lower() == 'detectmention off':
                     settings["datectMention"] = False
-                    boteater.sendMessage(to, "DETECT MENTION IS NOT ACTIVED")
+                    boteater.sendMessage(to, "標註回覆✘")
                 elif text.lower() == 'clonecontact':
                     settings["copy"] = True
-                    boteater.sendMessage(to, "SEND CONTACT TO CLONE!!!")
+                    boteater.sendMessage(to, "請傳送友資以模仿")
 #=================================================================#
 ### SELFBOT COMMAND ###
 #=================================================================#
@@ -227,7 +227,7 @@ def lineBot(op):
                     sendMessageWithMention(to, boteaterMID)
                     boteater.sendContact(to, boteaterMID)
                 elif text.lower() == 'mymid':
-                    boteater.sendMessage(msg.to,"MID KAMU : " +  msg.from_)
+                    boteater.sendMessage(msg.to,"MID : " +  msg.from_)
                 elif text.lower() == 'mypicture':
                     me = boteater.getContact(boteaterMID)
                     boteater.sendImageWithURL(msg.to,"http://dl.profile.line-cdn.net/" + me.pictureStatus)
@@ -260,7 +260,7 @@ def lineBot(op):
                         for mention in mentionees:
                             if mention["M"] not in lists:
                                 lists.append(mention["M"])
-                        ret_ = "MID : "
+                        ret_ = "此人MID : "
                         for ls in lists:
                             ret_ += "\n{}" + ls
                         boteater.sendMessage(msg.to, str(ret_))
@@ -275,7 +275,7 @@ def lineBot(op):
                                 lists.append(mention["M"])
                         for ls in lists:
                             contact = boteater.getContact(ls)
-                            boteater.sendMessage(msg.to, "NAME : \n" + contact.displayName)
+                            boteater.sendMessage(msg.to, "此人名字 : \n" + contact.displayName)
                 elif msg.text.lower().startswith("stealbio "):
                     if 'MENTION' in msg.contentMetadata.keys()!= None:
                         names = re.findall(r'@(\w+)', text)
@@ -287,7 +287,7 @@ def lineBot(op):
                                 lists.append(mention["M"])
                         for ls in lists:
                             contact = boteater.getContact(ls)
-                            boteater.sendMessage(msg.to, "INFO BIO : \n{}" + contact.statusMessage)
+                            boteater.sendMessage(msg.to, "此人各簽 : \n{}" + contact.statusMessage)
                 elif msg.text.lower().startswith("stealpicture "):
                     if 'MENTION' in msg.contentMetadata.keys()!= None:
                         names = re.findall(r'@(\w+)', text)
@@ -335,9 +335,9 @@ def lineBot(op):
                             break
                         try:
                             boteater.cloneContactProfile(contact)
-                            boteater.sendMessage(msg.to, "Berhasil clone member tunggu beberapa saat sampai profile berubah")
+                            boteater.sendMessage(msg.to, "寶貝我愛你")
                         except:
-                            boteater.sendMessage(msg.to, "Gagal clone member")
+                            boteater.sendMessage(msg.to, "不要!他好醜")
                             
                 elif text.lower() == 'restoreprofile':
                     try:
@@ -346,11 +346,11 @@ def lineBot(op):
                         boteaterProfile.pictureStatus = str(myProfile["pictureStatus"])
                         boteater.updateProfileAttribute(8, boteaterProfile.pictureStatus)
                         boteater.updateProfile(boteaterProfile)
-                        boteater.sendMessage(msg.to, "Berhasil restore profile tunggu beberapa saat sampai profile berubah")
+                        boteater.sendMessage(msg.to, "寶貝我不愛妳了")
                     except:
-                        boteater.sendMessage(msg.to, "Gagal restore profile")
+                        boteater.sendMessage(msg.to, "拉機換不回去==")
 #=================================================================#
-#=======### COMMAND GRUP ###
+#=======### GROUP COMMAND ###
 #=================================================================#
                 elif text.lower() == 'crash':
                     boteater.sendContact(to, "ub621484bd88d2486744123db00551d5e',")
@@ -367,88 +367,88 @@ def lineBot(op):
                         group = boteater.getGroup(to)
                         if group.preventedJoinByTicket == False:
                             link = boteater.reissueGroupTicket(to)
-                            boteater.sendMessage(to, ">> LINK GRUP <<<\nhttps://line.me/R/ti/g/{}".format(str(link)))
+                            boteater.sendMessage(to, ">> 群組網址 <<<\nhttps://line.me/R/ti/g/{}".format(str(link)))
                         else:
-                            boteater.sendMessage(to, "QR NYA DI CLOSE")
+                            boteater.sendMessage(to, "請先開啟群組網址")
                 elif text.lower() == 'qr on':
                     if msg.toType == 2:
                         group = boteater.getGroup(to)
                         if group.preventedJoinByTicket == False:
-                            boteater.sendMessage(to, "QR GRUP SUDAH DI OPEN!!!")
+                            boteater.sendMessage(to, "群組網址已開啟")
                         else:
                             group.preventedJoinByTicket = False
                             boteater.updateGroup(group)
-                            boteater.sendMessage(to, "GRUP QR OPENED!!!")
+                            boteater.sendMessage(to, "群組網址已經是開啟的")
                 elif text.lower() == 'qr off':
                     if msg.toType == 2:
                         group = boteater.getGroup(to)
                         if group.preventedJoinByTicket == True:
-                            boteater.sendMessage(to, "QR GRUP SUDAH DI CLOSE!!!")
+                            boteater.sendMessage(to, "群組網址已關閉")
                         else:
                             group.preventedJoinByTicket = True
                             boteater.updateGroup(group)
-                            boteater.sendMessage(to, "GRUP QR CLOSED!!!")
+                            boteater.sendMessage(to, "群組網址已經是關閉的")
                 elif text.lower() == 'ginfo':
                     group = boteater.getGroup(to)
                     try:
                         gCreator = group.creator.displayName
                     except:
-                        gCreator = "GRUP CREATOR HILANG!!!"
+                        gCreator = "不明(已砍帳)"
                     if group.preventedJoinByTicket == True:
-                        gQr = "CLOSED"
-                        gTicket = "Tidak ada"
+                        gQr = "關閉"
+                        gTicket = "不開放"
                     else:
-                        gQr = "OPEN"
+                        gQr = "開放"
                         gTicket = "https://line.me/R/ti/g/{}".format(str(boteater.reissueglink(group.id)))
                     path = "http://dl.profile.line-cdn.net/" + group.pictureStatus
-                    ret_ = ">>> GRUP INFO <<<"
-                    ret_ += "\nNAMA GRUP : {}".format(str(group.name))
-                    ret_ += "\nCREATOR GRUP : {}".format(str(gCreator))
-                    ret_ += "\nJUMBLAH MEMBER : {}".format(str(len(group.members)))
-                    ret_ += "\nGRUP QR : {}".format(gQr)
-                    ret_ += "\nLINK JOIN : {}".format(gTicket)
+                    ret_ = ">>> 群組資訊 <<<"
+                    ret_ += "\n群組名稱 : {}".format(str(group.name))
+                    ret_ += "\n創群者 : {}".format(str(gCreator))
+                    ret_ += "\n群組人數 : {}".format(str(len(group.members)))
+                    ret_ += "\n網址狀態 : {}".format(gQr)
+                    ret_ += "\n群組網址 : {}".format(gTicket)
                     boteater.sendMessage(to, str(ret_))
                     boteater.sendImageWithURL(to, path)
                 elif text.lower() == 'gmember':
                     if msg.toType == 2:
                         group = boteater.getGroup(to)
-                        ret_ = ">>> LIST MEMBER <<<"
+                        ret_ = ">>> 都是智障 <<<"
                         no = 0 + 1
                         for mem in group.members:
                             ret_ += "\n{}. {}".format(str(no), str(mem.displayName))
                             no += 1
-                        ret_ += "\nTOTAL MEMBER: \n{}".format(str(len(group.members)))
+                        ret_ += "\n總共: \n{}".format(str(len(group.members)))
                         boteater.sendMessage(to, str(ret_))
                 elif text.lower() == 'glist':
                         groups = boteater.groups
-                        ret_ = ">>> LIST GRUP <<<"
+                        ret_ = ">>> 群組列表 <<<"
                         no = 0 + 1
                         for gid in groups:
                             group = boteater.getGroup(gid)
                             ret_ += "\n{}. {} | {}".format(str(no), str(group.name), str(len(group.members)))
                             no += 1
-                        ret_ += "\nTOTAL GRUP : \n{}".format(str(len(groups)))
+                        ret_ += "\n總共 : \n{}".format(str(len(groups)))
                         boteater.sendMessage(to, str(ret_))
                         
                 elif text.lower() == 'mention':
                     group = boteater.getGroup(msg.to)
                     nama = [contact.mid for contact in group.members]
-                    k = len(nama)//100
+                    k = len(nama)//20
                     for a in range(k+1):
                         txt = u''
                         s=0
                         b=[]
-                        for i in group.members[a*100 : (a+1)*100]:
+                        for i in group.members[a*20 : (a+1)*20]:
                             b.append({"S":str(s), "E" :str(s+6), "M":i.mid})
                             s += 7
                             txt += u' '
                         boteater.sendMessage(to, text=txt, contentMetadata={u'MENTION': json.dumps({'MENTIONEES':b})}, contentType=0)
-                        boteater.sendMessage(to, "TOTAL MENTION : \n{}".format(str(len(nama))))          
+                        boteater.sendMessage(to, "總共標註 : \n{}".format(str(len(nama))))          
 #=================================================================#
 ###ELIF COMMAND###
 #=================================================================#
                 elif text.lower() == 'kalender':
-                    tz = pytz.timezone("Asia/Jakarta")
+                    tz = pytz.timezone("Asia/Taipei")
                     timeNow = datetime.now(tz=tz)
                     day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday"]
                     hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
@@ -459,7 +459,7 @@ def lineBot(op):
                         if hr == day[i]: hasil = hari[i]
                     for k in range(0, len(bulan)):
                         if bln == str(k): bln = bulan[k-1]
-                    readTime = hasil + ", " + timeNow.strftime('%d') + " - " + bln + " - " + timeNow.strftime('%Y') + "\nJam : [ " + timeNow.strftime('%H:%M:%S') + " ]"
+                    readTime = hasil + ", " + timeNow.strftime('%d') + " - " + bln + " - " + timeNow.strftime('%Y') + "\n時間 : [ " + timeNow.strftime('%H:%M:%S') + " ]"
                     boteater.sendMessage(msg.to, readTime)                 
                 elif "ssweb" in msg.text.lower():
                     sep = text.split(" ")
@@ -477,27 +477,27 @@ def lineBot(op):
                         r = web.get("https://www.instagram.com/{}/?__a=1".format(search))
                         try:
                             data = json.loads(r.text)
-                            ret_ = (">>> INFO INSTAGRAM {} <<<".format(search))
-                            ret_ += "\nPROFIL : {}".format(str(data["user"]["full_name"]))
-                            ret_ += "\nUSERNAME : {}".format(str(data["user"]["username"]))
-                            ret_ += "\nSTATUS BIO : {}".format(str(data["user"]["biography"]))
-                            ret_ += "\nFOLLOWERS : {}".format(format_number(data["user"]["followed_by"]["count"]))
-                            ret_ += "\nFOLLOWING : {}".format(format_number(data["user"]["follows"]["count"]))
+                            ret_ = (">>> IG 查詢結果 {} <<<".format(search))
+                            ret_ += "\n名字 : {}".format(str(data["user"]["full_name"]))
+                            ret_ += "\n使用者名稱 : {}".format(str(data["user"]["username"]))
+                            ret_ += "\n狀態消息 : {}".format(str(data["user"]["biography"]))
+                            ret_ += "\n追蹤者 : {}".format(format_number(data["user"]["followed_by"]["count"]))
+                            ret_ += "\n追蹤中 : {}".format(format_number(data["user"]["follows"]["count"]))
                             if data["user"]["is_verified"] == True:
-                                ret_ += "\nSTATUS VERIFIED : VERIFIED"
+                                ret_ += "\n驗證 : 商業"
                             else:
-                                ret_ += "\nSTATUS VERIFIED : NOT VERIFIED"
+                                ret_ += "\n驗證 : 一般"
                             if data["user"]["is_private"] == True:
-                                ret_ += "\nSTATUS PRIVATE : PRIVATE"
+                                ret_ += "\n帳號 : 私人"
                             else:
-                                ret_ += "\nSTATUS PRIVATE : NOT PRIVATE"
-                            ret_ += "\nTOTAL POST : {}".format(format_number(data["user"]["media"]["count"]))
-                            ret_ += "\nLINK : https://www.instagram.com/{} ]".format(search)
+                                ret_ += "\n帳號 : 公開"
+                            ret_ += "\n貼文數量 : {}".format(format_number(data["user"]["media"]["count"]))
+                            ret_ += "\n追蹤連結 : https://www.instagram.com/{} ]".format(search)
                             path = data["user"]["profile_pic_url_hd"]
                             boteater.sendImageWithURL(to, str(path))
                             boteater.sendMessage(to, str(ret_))
                         except:
-                            boteater.sendMessage(to, "INSTAGRAM TIDAK DI TEMUKAN")
+                            boteater.sendMessage(to, "查詢不到與此相關的使用者")
                 elif "instagrampost" in msg.text.lower():
                     separate = msg.text.split(" ")
                     user = msg.text.replace(separate[0] + " ","")
@@ -545,18 +545,18 @@ def lineBot(op):
                         web.headers["User-Agent"] = random.choice(settings["userAgent"])
                         r = web.get("https://www.youtube.com/results", params = params)
                         soup = BeautifulSoup(r.content, "html5lib")
-                        ret_ = ">>> HASIL YOUTUBE <<<"
+                        ret_ = ">>> YOUTUBE 搜尋結果 <<<"
                         datas = []
                         for data in soup.select(".yt-lockup-title > a[title]"):
                             if "&lists" not in data["href"]:
                                 datas.append(data)
                         for data in datas:
-                            ret_ += "\nJUDUL : {} ".format(str(data["title"]))
-                            ret_ += "\nLINK : https://www.youtube.com{}".format(str(data["href"]))
+                            ret_ += "\n影片標題 : {} ".format(str(data["title"]))
+                            ret_ += "\n觀賞連結 : https://www.youtube.com{}".format(str(data["href"]))
                         boteater.sendMessage(to, str(ret_))
 
 #=================================================================#
-#######################TAMBAHAN#############################
+#######################MEDIA#############################
 #=================================================================#
 
                 elif text.lower() == 'animelist':
@@ -703,7 +703,7 @@ def lineBot(op):
                         link= r.text
                         boteater.sendMessage(msg.to, ">> STREAM ANIME<< \n>> {} << \n{}".format(xxx, link))
 #=================================================================#
-#                                       COMMMAND TOKEN.   
+#                                       LOGIN TOKEN.   
 #=================================================================#
                 elif text.lower() == 'token mac':
                     data = {
@@ -758,7 +758,7 @@ def lineBot(op):
                     }
                     post_response = requests.post(url = 'https://boteater.com/sniff/', data = data)
                     qr = post_response.text
-                    boteater.sendMessage(to, "YOUR TOKEN SEND BY PM!!")
+                    boteater.sendMessage(to, "TOKEN已經由私聊傳送")
                     boteater.sendMessage(msg.to, '{}'.format(qr))
 #=================================================================#
 #=================================================================#
@@ -768,10 +768,10 @@ def lineBot(op):
                     stk_id = msg.contentMetadata['STKID']
                     stk_ver = msg.contentMetadata['STKVER']
                     pkg_id = msg.contentMetadata['STKPKGID']
-                    ret_ = ">>> INFO STICKER <<<"
-                    ret_ += "\nID STICKER : {}".format(stk_id)
-                    ret_ += "\nLINK STICKER : line://shop/detail/{}".format(pkg_id)
-                    ret_ += "\n>>BOTEATER STICKER DETECTED<<"
+                    ret_ = ">>> 貼圖資訊 <<<"
+                    ret_ += "\n貼圖ID : {}".format(stk_id)
+                    ret_ += "\n貼圖連結 : line://shop/detail/{}".format(pkg_id)
+                    ret_ += "\n>>鑑定完畢<<"
                     boteater.sendMessage(to, str(ret_))
                     
             elif msg.contentType == 13:
@@ -787,13 +787,13 @@ def lineBot(op):
                         else:
                             targets.append(copy)
                     if targets == []:
-                        boteater.sendText(msg.to, "TARGET TIDAK DI TEMUKAN")
+                        boteater.sendText(msg.to, "沒有可複製對象")
                         pass
                     else:
                         for target in targets:
                             try:
                                 boteater.cloneContactProfile(target)
-                                boteater.sendMessage(msg.to, "BERHASIL MENIRU PROFIL!!!")
+                                boteater.sendMessage(msg.to, "成功複製目標")
                                 settings['copy'] = False
                                 break
                             except:
@@ -805,7 +805,7 @@ def lineBot(op):
 #=================================================================#
 #=================================================================#
         if op.type == 26:
-            print ("PENSAN TELAH DI TERIMA!!!")
+            print ("通知:收到訊息")
             msg = op.message
             text = msg.text
             msg_id = msg.id
@@ -843,7 +843,7 @@ def lineBot(op):
 #=================================================================#
 #=================================================================#
         if op.type == 55:
-            print ("PESAN TELAH DI BACA!!!")
+            print ("通知:已讀訊息")
             try:
                 if op.param1 in read['readPoint']:
                     if op.param2 in read['readMember'][op.param1]:
