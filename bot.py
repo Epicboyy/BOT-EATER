@@ -7,11 +7,11 @@ from humanfriendly import format_timespan, format_size, format_number, format_le
 import time, random, sys, json, codecs, threading, glob, re, string, os, requests, subprocess, six, ast, pytz, urllib, urllib.parse
 from gtts import gTTS
 #=================================================================#
-### LOGIN SETTING DISINI ###
+### LOGIN SETTING ###
 boteater = LINE()##LOGIN LEWAT TOKEN
 boteater.log("Auth Token : " + str(boteater.authToken))
 #=================================================================#
-### SETTINGAN INFO ###
+### SETTINGS INFO ###
 boteaterMID = boteater.profile.mid
 boteaterProfile = boteater.getProfile()
 lineSettings = boteater.getSettings()
@@ -32,10 +32,10 @@ myProfile["pictureStatus"] = boteaterProfile.pictureStatus
 #=================================================================#
 #=================================================================#
 #=================================================================#
-### KUMPULAN DEF ##
+### DESCRIBE DEF ##
 #=================================================================#
 def restartBot():
-    print (">SELFBOT TELAH DI RESTART<")
+    print (">>>機器重啟<<<")
     backupData()
     time.sleep(1)
     python = sys.executable
@@ -55,7 +55,7 @@ def backupData():
         return False    
     
 def logError(text):
-    boteater.log("TERJADI ERROR : " + str(text))
+    boteater.log("發生錯誤 : " + str(text))
     time_ = datetime.now()
     with open("error.txt","a") as error:
         error.write("\n[%s] %s" % (str(time), text))
@@ -77,23 +77,23 @@ def lineBot(op):
             return
 #=================================================================#
         if op.type == 5:
-            print ("INFO SELBOT : ADA YANG ADD")
+            print ("通知 : 加入好友")
             if settings["autoAdd"] == True:
-                boteater.sendMessage(op.param1, "=== SELFBOT V1.0 === \nTERIMAKASIH {} TELAH ADD SAYA".format(str(boteater.getContact(op.param1).displayName)))
+                boteater.sendMessage(op.param1, "=== 尹莫測試 V1.0 === \n嘿嘿! {} 恭喜您成為白老鼠".format(str(boteater.getContact(op.param1).displayName)))
 #=================================================================#
         if op.type == 13:
-            print ("INFO SELBOT : ADA YANG INVITE GRUP")
+            print ("通知 : 加入群組")
             group = boteater.getGroup(op.param1)
             if settings["autoJoin"] == True:
                 boteater.acceptGroupInvitation(op.param1)
 #=================================================================#
         if op.type == 24:
-            print ("INFO SELBOT : LEAVE ROOM")
+            print ("通知 : 離開副本")
             if settings["autoLeave"] == True:
                 boteater.leaveRoom(op.param1)
 #=================================================================#
         if op.type == 25:
-            print ("INFO SELBOT : MENGIRIM PESAN")
+            print ("通知 : 傳送訊息")
             msg = op.message
             text = msg.text
             msg_id = msg.id
@@ -137,9 +137,9 @@ def lineBot(op):
                     elapsed_time = time.time() - start
                     boteater.sendMessage(to,format(str(elapsed_time)))
                 elif text.lower() == 'restart':
-                    boteater.sendMessage(to, "SEDANG RESTART")
+                    boteater.sendMessage(to, "正在重啟...")
                     time.sleep(5)
-                    boteater.sendMessage(to, "SUKSES!!!")
+                    boteater.sendMessage(to, "系統載入完畢")
                     restartBot()
                 elif text.lower() == 'errorlog':
                     with open('error.txt', 'r') as er:
@@ -149,22 +149,22 @@ def lineBot(op):
                     timeNow = time.time()
                     runtime = timeNow - botStart
                     runtime = format_timespan(runtime)
-                    boteater.sendMessage(to, "BOT ALREADY RUN IN \n {}".format(str(runtime)))
+                    boteater.sendMessage(to, "系統已運行 \n {}".format(str(runtime)))
                 elif text.lower() == 'about':
                     try:
                         arr = []
                         saya = "MIDMU"
                         creator = boteater.getContact(saya)
-                        ret_ = ">>> INFO BOT <<<"
-                        ret_ += "\nSELFBOT PYTHON 3  V1.0"
-                        ret_ += "\nBOT INI MILIK SLACKBOT TIDAK UNTUK DI PERJUAL BELIKAN!!! (GRATIS)"
-                        ret_ += "\nYANG BUAT : {}".format(creator.displayName)
+                        ret_ = ">>> 關於本機 <<<"
+                        ret_ += "\n PYTHON 3 測試版 V1.0"
+                        ret_ += "\n此為公開型機器"
+                        ret_ += "\n作者 : {}".format(creator.displayName)
                         boteater.sendMessage(to, str(ret_))
                     except Exception as e:
                         boteater.sendMessage(msg.to, str(e))
                 elif text.lower() == 'status':
                     try:
-                        ret_ = " >>> STATUS BOT <<<"
+                        ret_ = " >>> 本機狀態 <<<"
                         if settings["autoAdd"] == True: ret_ += "\nAUTO ADD ACTIVED"
                         else: ret_ += "\nAUTO ADD NOT ACTIVED"
                         if settings["autoJoin"] == True: ret_ += "\nAUTO JOIN ACTIVED"
